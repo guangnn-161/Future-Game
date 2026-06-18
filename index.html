@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A2Z Futures Pit</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="Game controls">
+        <div>
+          <p class="eyebrow">A2Z Corp Futures</p>
+          <h1>Pit Market</h1>
+        </div>
+        <div class="top-actions">
+          <label class="select-label">
+            Your role
+            <select id="roleSelect">
+              <option value="T">Trader</option>
+              <option value="S">Speculator</option>
+              <option value="M">Market Maker</option>
+            </select>
+          </label>
+          <button id="newGameButton" class="primary-button" type="button">New Game</button>
+        </div>
+      </section>
+
+      <section class="market-strip" aria-label="Market status">
+        <div>
+          <span>Day</span>
+          <strong id="dayText">1 / 5</strong>
+        </div>
+        <div>
+          <span>Phase</span>
+          <strong id="phaseText">Blind Trade</strong>
+        </div>
+        <div>
+          <span>Open</span>
+          <strong id="openText">10,000</strong>
+        </div>
+        <div>
+          <span>Indicative</span>
+          <strong id="indicativeText">10,000</strong>
+        </div>
+        <div>
+          <span>Your P/L</span>
+          <strong id="plText">0</strong>
+        </div>
+      </section>
+
+      <section class="layout-grid">
+        <section class="panel trade-panel" aria-label="Trading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Trade</p>
+              <h2 id="tradeTitle">Quote Board</h2>
+            </div>
+            <button id="advanceButton" class="secondary-button" type="button">Next Phase</button>
+          </div>
+
+          <div id="newsBox" class="news-box"></div>
+
+          <div class="ticket">
+            <label>
+              Side
+              <select id="sideInput">
+                <option value="buy">Buy from bot</option>
+                <option value="sell">Sell to bot</option>
+              </select>
+            </label>
+            <label>
+              Contracts
+              <input id="qtyInput" type="number" min="1" max="3" value="1">
+            </label>
+            <label>
+              Limit price
+              <input id="priceInput" type="number" min="10" step="10" value="10000">
+            </label>
+            <label>
+              Counterparty
+              <select id="botInput"></select>
+            </label>
+            <button id="tradeButton" class="primary-button" type="button">Send Order</button>
+          </div>
+
+          <div class="phase-rules" id="phaseRules"></div>
+          <div class="quotes" id="quotes"></div>
+        </section>
+
+        <aside class="panel player-panel" aria-label="Player status">
+          <div class="panel-heading compact">
+            <div>
+              <p class="eyebrow">You</p>
+              <h2 id="playerRoleText">Trader</h2>
+            </div>
+            <span id="playerStatus" class="status-pill">Active</span>
+          </div>
+          <dl class="stat-list">
+            <div><dt>Trades today</dt><dd id="tradeCountText">0 / 2</dd></div>
+            <div><dt>Max size</dt><dd id="maxSizeText">2</dd></div>
+            <div><dt>Daily limit</dt><dd id="lossLimitText">-3,000</dd></div>
+            <div><dt>Rescue</dt><dd id="rescueText">Available</dd></div>
+            <div><dt>Loan due</dt><dd id="loanText">0</dd></div>
+          </dl>
+          <h3>Today's trades</h3>
+          <div id="playerTrades" class="trade-list"></div>
+        </aside>
+      </section>
+
+      <section class="panel board-panel" aria-label="Leaderboard">
+        <div class="panel-heading compact">
+          <div>
+            <p class="eyebrow">Market</p>
+            <h2>Leaderboard</h2>
+          </div>
+          <span id="winnerText" class="winner-text"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Trades</th>
+                <th>P/L</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel log-panel" aria-label="Game log">
+        <div class="panel-heading compact">
+          <div>
+            <p class="eyebrow">Tape</p>
+            <h2>Event Log</h2>
+          </div>
+        </div>
+        <ol id="logList" class="log-list"></ol>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
